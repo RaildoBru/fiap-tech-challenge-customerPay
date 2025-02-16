@@ -6,6 +6,8 @@ import bodyParser from "body-parser";
 
 import  customerRoutes from "./src/routes/customer.routes.js"
 
+import { paymentCreate } from "./src/services/payment.service.js";
+
 dotenv.config();
 const app = express();
 
@@ -16,7 +18,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('OK');
 });
+
 app.use('/customer', customerRoutes);
+app.use('/payment', paymentCreate)
 
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => console.log(`API Gateway rodando na porta ${PORT}`));
